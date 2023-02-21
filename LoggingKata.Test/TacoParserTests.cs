@@ -30,14 +30,32 @@ namespace LoggingKata.Test
             //       each representing a TacoBell location
 
             //Arrange
+            //Parse method is located within the TacoParser class
+            var test = new TacoParser();
 
             //Act
+            //Feed the Parse method "line" it will read the string of latitude, longitude, and name.
+            var actual = test.Parse(line);
 
             //Assert
+            Assert.Equal(expected, actual.Location.Longitude);
         }
 
+        [Theory]
+        [InlineData("34.073638, -84.677017, Taco Bell Acwort...", 34.073638)]
+        public void ShouldParseLatitude(string line, double expected)
+        {
+            //Arrange
+            var test = new TacoParser();
 
-        //TODO: Create a test ShouldParseLatitude
+            //Act
+            var actual = test.Parse(line);
+
+            //Assert
+            Assert.Equal(expected, actual.Location.Latitude);
+
+
+        }//DoneTODO: Create a test ShouldParseLatitude
 
     }
 }
